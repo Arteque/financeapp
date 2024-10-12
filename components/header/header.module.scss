@@ -1,0 +1,31 @@
+@import '../../app/assets/mixin.scss';
+// @import '../../app/assets/colors.scss';
+.logolarge{
+    display:none;
+    @include md{
+        display: block;
+    }
+}
+.logosmall{
+    display:block; 
+    @include md{
+        display:none;
+    }
+} 
+.mainheader{
+    position:fixed;
+    inset-inline: 0;
+    bottom: 0;
+    border-radius:var(--rounded) var(--rounded) 0 0;
+    padding:var(--gap);
+    @include lg{
+        inset-inline: unset;
+        bottom: unset;
+        grid-column:1;
+        grid-row:1;
+        max-width: 300px;
+        border-radius:0 var(--rounded) var(--rounded) 0;
+        position:sticky;
+        top:0
+    }
+}

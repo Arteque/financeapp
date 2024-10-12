@@ -1,0 +1,37 @@
+.logolarge {
+  display: none;
+}
+@media (min-width: 768px) {
+  .logolarge {
+    display: block;
+  }
+}
+
+.logosmall {
+  display: block;
+}
+@media (min-width: 768px) {
+  .logosmall {
+    display: none;
+  }
+}
+
+.mainheader {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  border-radius: var(--rounded) var(--rounded) 0 0;
+  padding: var(--gap);
+}
+@media (min-width: 1070px) {
+  .mainheader {
+    inset-inline: unset;
+    bottom: unset;
+    grid-column: 1;
+    grid-row: 1;
+    max-width: 300px;
+    border-radius: 0 var(--rounded) var(--rounded) 0;
+    position: sticky;
+    top: 0;
+  }
+}/*# sourceMappingURL=header.module.css.map */
