@@ -69,13 +69,35 @@ button{
     cursor:pointer;
 }
 .main-header{
-    padding: var(--gap);
-    a, .btn{
-        color: var(--light-100);
-        text-decoration:none;
-        display:flex;
-        gap: var(--gap);
-        align-items:center;
-        padding-block:var(--gap);
+    // padding: var(--gap);
+    .main-header__logo, .main-header__hamburger{
+        display: none;
+    }
+    
+    nav{
+        ul{
+            display:flex;
+            // gap:var(--gap);
+            align-items:center;
+            justify-content: space-evenly;
+            li{
+                &.current{
+                    background-color:var(--light-100);
+                }
+            }
+        }
     }
 }
+a,.btn{
+    text-decoration: none;
+    color: currentColor;
+    padding:1em 2em;
+    display: block;
+    &:has(span.icon), &:has(span.text){
+        color:var(--light-100);
+       .text{
+          display:none;
+       }
+    }
+}
+

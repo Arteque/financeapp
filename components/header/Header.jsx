@@ -23,7 +23,7 @@ import Minimizemenu from "@/public/images/icon-minimize-menu.svg"
       </div>
       <nav className="main-header__nav">
         <ul className="main-header__nav-items">
-          <li>
+          <li className="current">
             <Link href="/">
               <span className="icon">
                 <Image src={Overview} alt="Overview" />

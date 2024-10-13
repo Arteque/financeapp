@@ -81,18 +81,33 @@ button {
   cursor: pointer;
 }
 
-.main-header {
-  padding: var(--gap);
+.main-header .main-header__logo, .main-header .main-header__hamburger {
+  display: none;
 }
-.main-header a, .main-header .btn {
-  color: var(--light-100);
-  text-decoration: none;
+.main-header nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: var(--gap);
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-block: var(--gap);
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+.main-header nav ul li.current {
+  background-color: var(--light-100);
+}
+
+a, .btn {
+  text-decoration: none;
+  color: currentColor;
+  padding: 1em 2em;
+  display: block;
+}
+a:has(span.icon), a:has(span.text), .btn:has(span.icon), .btn:has(span.text) {
+  color: var(--light-100);
+}
+a:has(span.icon) .text, a:has(span.text) .text, .btn:has(span.icon) .text, .btn:has(span.text) .text {
+  display: none;
 }/*# sourceMappingURL=globals.css.map */
