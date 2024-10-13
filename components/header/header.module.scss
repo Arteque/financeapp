@@ -17,7 +17,7 @@
     inset-inline: 0;
     bottom: 0;
     border-radius:var(--rounded) var(--rounded) 0 0;
-    padding:var(--gap);
+    overflow: hidden;
     @include lg{
         inset-inline: unset;
         bottom: unset;

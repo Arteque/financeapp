@@ -3,13 +3,16 @@
 @import "./assets/colors.css";
 
 *,*::after,*::before{
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 html,body{
     font-family: var(--public);
-    margin: 0;
-    padding: 0;
+}
+h1,h2,h3,h4,h5,h6{
+    margin-block: 0.3em;
 }
 body{
     min-height: 100svh;
@@ -47,7 +50,12 @@ textarea{
 .text__bold{
     font-weight: bold;
 }
-
+.rounded{
+    border-radius: var(--rounded);
+}
+.padding{
+    padding: var(--padding);
+}
 .container{
     max-width: 343px;
     margin-inline: auto;
@@ -68,21 +76,49 @@ button{
     background:transparent;
     cursor:pointer;
 }
+.content-box{
+    padding: 20px;
+    border-radius: var(--rounded);
+    background-color: var(--light-500);
+    .content-box__title{
+        margin-block-end: var(--gap__12);
+    }
+}
 .main-header{
-    // padding: var(--gap);
+    padding-block-start: 0.5em;
+    padding-inline: 1em;
     .main-header__logo, .main-header__hamburger{
         display: none;
     }
-    
     nav{
         ul{
             display:flex;
-            // gap:var(--gap);
             align-items:center;
-            justify-content: space-evenly;
+            justify-content: center;
             li{
                 &.current{
-                    background-color:var(--light-100);
+                    a{
+                        background-color: var(--dark-400);
+                        border-block-end-color: var(--second-green);
+                        svg{
+                            path{
+                                fill:var(--second-green);
+                            }
+                        }
+                    }
+                }
+            }
+            a{
+                display: block;
+                height: 44px;
+                max-width: 66px;
+                display:flex;
+                align-items: center;
+                justify-content:center;
+                border-radius:var(--rounded) var(--rounded) 0 0;
+                border-block-end: 4px solid transparent;
+                .text{
+                    display: none;
                 }
             }
         }
@@ -91,13 +127,6 @@ button{
 a,.btn{
     text-decoration: none;
     color: currentColor;
-    padding:1em 2em;
-    display: block;
-    &:has(span.icon), &:has(span.text){
-        color:var(--light-100);
-       .text{
-          display:none;
-       }
-    }
+    padding:var(--gap__24);
 }
 

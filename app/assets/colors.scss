@@ -1,14 +1,15 @@
 $colors:(
     light:(
         100:rgb(152, 144, 139),
-        200:rgb(248, 244, 240),
-        300:rgb(175, 129, 186),
+        200:rgb(175, 129, 186),
+        300:rgb(248, 244, 240),
+        400:rgb(242, 242, 242),
+        500:rgb(255, 255, 255),
     ),
     dark:(
         100:rgb(32, 31, 36),
         200:rgb(105, 104, 104),
         300:rgb(179, 179, 179),
-        400:rgb(242, 242, 242),
     ),
     second:(
         green:rgb(39, 124, 120),
@@ -41,8 +42,12 @@ $colors:(
         }
    }
    --public: "Public Sans", sans-serif;
-   --gap:24px;
+   --gap:32px;
+   --gap__24:24px;
+   --gap__16:1em;
+   --gap__12:12px;
    --rounded:12px;
+   --padding:1em;
 }
 @each $clrs, $vls in $colors{
     @each $clr, $vl in $vls{
