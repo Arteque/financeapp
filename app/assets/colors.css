@@ -1,9 +1,8 @@
 :root {
   --light-100:rgb(152, 144, 139);
-  --light-200:rgb(175, 129, 186);
+  --light-200:rgb(242, 242, 242);
   --light-300:rgb(248, 244, 240);
-  --light-400:rgb(242, 242, 242);
-  --light-500:rgb(255, 255, 255);
+  --light-400:rgb(255, 255, 255);
   --dark-100:rgb(32, 31, 36);
   --dark-200:rgb(105, 104, 104);
   --dark-300:rgb(179, 179, 179);
@@ -45,10 +44,6 @@
 
 .text-light-400 {
   color: var(--light-400);
-}
-
-.text-light-500 {
-  color: var(--light-500);
 }
 
 .text-dark-100 {
@@ -137,10 +132,6 @@
 
 .bg-light-400 {
   background-color: var(--light-400);
-}
-
-.bg-light-500 {
-  background-color: var(--light-500);
 }
 
 .bg-dark-100 {

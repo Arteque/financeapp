@@ -50,6 +50,12 @@ textarea{
 .text__bold{
     font-weight: bold;
 }
+.text__normail{
+    font-weight: normal;
+}
+.text__thin{
+    font-weight: lighter;
+}
 .rounded{
     border-radius: var(--rounded);
 }
@@ -79,9 +85,48 @@ button{
 .content-box{
     padding: 20px;
     border-radius: var(--rounded);
-    background-color: var(--light-500);
+    background-color: var(--light-400);
+    a{
+        padding: 0;
+        margin: 0;
+    }
+}
+.content-box--dark{
+    background-color: var(--dark-100);
+    color: var(--light-400);
+}
+
+.content-box__title{
+    margin-block-end: var(--gap__12);
+}
+.content-box__header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    .text{
+        margin-inline-end: var(--gap__12);
+    }
+}
+.content-box--2cols{
+    display:flex;
+    gap: var(--gap__16);
+    padding: var(--gap__16);
     .content-box__title{
-        margin-block-end: var(--gap__12);
+        margin-block-end: var(--gap__16);
+        color: var(--dark-200)
+    }
+}
+.content-box--data{
+    position:relative;
+    padding: 0;
+    padding-inline-start: var(--gap__16);
+    &::before{
+        content:"";
+        position:absolute;
+        width: 4px;
+        inset-block: 0;
+        inset-inline-start: 0;
+        background-color: currentColor;
     }
 }
 .main-header{
@@ -98,7 +143,7 @@ button{
             li{
                 &.current{
                     a{
-                        background-color: var(--dark-400);
+                        background-color: var(--light-400);
                         border-block-end-color: var(--second-green);
                         svg{
                             path{
