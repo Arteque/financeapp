@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import './assets/mixin.scss';
-@import "./assets/colors.css";
+@import "./assets/colors.scss";
 
 *,*::after,*::before{
     margin: 0;
@@ -65,6 +65,7 @@ textarea{
 .container{
     max-width: 343px;
     margin-inline: auto;
+    padding-block-end: 3rem;
     @include md{
         max-width: 688px;
     }
@@ -82,6 +83,9 @@ button{
     background:transparent;
     cursor:pointer;
 }
+.section{ 
+    margin-block-end: var(--gap__32);
+}
 .content-box{
     padding: 20px;
     border-radius: var(--rounded);
@@ -91,6 +95,7 @@ button{
         margin: 0;
     }
 }
+
 .content-box--dark{
     background-color: var(--dark-100);
     color: var(--light-400);
@@ -116,19 +121,57 @@ button{
         color: var(--dark-200)
     }
 }
-.content-box--data{
+.content-box--grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap:var(--gap__16);
+}
+.content-box--line-left{
     position:relative;
     padding: 0;
     padding-inline-start: var(--gap__16);
+    h5{
+        font-weight: 400;
+    }
     &::before{
         content:"";
         position:absolute;
-        width: 4px;
+        width: 6px;
         inset-block: 0;
         inset-inline-start: 0;
         background-color: currentColor;
+        border-radius: 10px;
     }
 }
+.content-box__avatar{
+    display: flex;
+    gap: var(--gap__16);
+    padding-inline: 0;
+    position:relative;
+    // justify-content: space-between;
+    .avatar__name{
+        justify-self: start;
+    }
+    .data{
+        margin-inline-start: auto;
+    }
+    &.content-box__limit{
+        &:not(:last-of-type){
+            &::after{
+                content:"";
+                position:absolute;
+                bottom:0;
+                inset-inline: 0;
+                height: 1px;
+                background-color: var(--dark-100);
+                opacity: 0.2;
+            }
+        }
+        
+    }
+}
+
 .main-header{
     padding-block-start: 0.5em;
     padding-inline: 1em;

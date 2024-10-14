@@ -22,6 +22,7 @@
   bottom: 0;
   border-radius: var(--rounded) var(--rounded) 0 0;
   overflow: hidden;
+  z-index: 999;
 }
 @media (min-width: 1070px) {
   .mainheader {

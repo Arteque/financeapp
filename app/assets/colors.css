@@ -22,7 +22,7 @@
   --third-gold:rgb(202, 179, 97);
   --third-orange:rgb(190, 108, 73);
   --public: "Public Sans", sans-serif;
-  --gap:32px;
+  --gap__32:32px;
   --gap__24:24px;
   --gap__16:1em;
   --gap__12:12px;
