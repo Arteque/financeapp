@@ -171,7 +171,35 @@ button{
         
     }
 }
-
+.content-box__chart {
+    position: relative;
+}
+.content-box__innercircle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 50%;
+    mix-blend-mode: soft-light;
+    width: 205px;
+    aspect-ratio: 1;
+}
+.content-box__innercircle-daten {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    aspect-ratio: 1;
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+    background-color: var(--light-200);
+    border-radius: 50%;
+}
 .main-header{
     padding-block-start: 0.5em;
     padding-inline: 1em;
