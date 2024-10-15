@@ -1,8 +1,8 @@
 import Contentbox from "./Contentbox";
 
-const ContentboxLineLeft = ({className, children}) => {
+const ContentboxLineLeft = ({className, children, style}) => {
     return (
-        <Contentbox className={`content-box--line-left ${className ? className : ''}`}>
+        <Contentbox style={style} className={`content-box--line-left ${className ? className : ''}`} >
             {children}
         </Contentbox>
     );

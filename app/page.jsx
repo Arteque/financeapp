@@ -10,14 +10,14 @@ import Contentbox2Cols from "@/components/shared/Contentbox2Cols";
 import ContentboxGrid from "@/components/shared/ContentboxGrid";
 import ContentboxLineLeft from "@/components/shared/ContentboxLineLeft";
 import ContentboxAvtar from "@/components/shared/ContentboxAvtar";
-import transactions from "@/app/Api/data.json"
+import data from "@/app/Api/data.json"
 import { Currency } from "@/libs/currency";
 import { GetDate } from "@/libs/getDate";
 import ContentboxChart from "@/components/shared/ContentboxChart";
 // import Image from "next/image";
 const Home = ()  => {
 
-  const dataTrs = transactions.transactions
+  const dataTrs = data.transactions
 
 
   return (
@@ -120,145 +120,42 @@ const Home = ()  => {
                 />
               {
               dataTrs && dataTrs.map((item,index) => {
-                const imgSrc = item.avatar
-                return (
-                  <ContentboxAvtar                   
-                    key={index}
-                    src={item.avatar}
-                    title={item.name}
-                    date={GetDate(item.date)}
-                    number={Currency(item.amount)} 
-                  />
-                )
-              })
+                if(index < 5) 
+                    {
+                      return <ContentboxAvtar                   
+                              key={index}
+                              src={item.avatar}
+                              title={item.name}
+                              date={GetDate(item.date)}
+                              number={Currency(item.amount)} 
+                            />
+                    }
+                })
             }
             </Contentbox>
         </Section> 
 
   
-        <section className="section">
+        <Section>
           <div className="content-box bg-light-400">
             {/* Box Header */}
-            <div className="content-box__header">
-                <h3 className="content-box__title text__md">Budgets</h3>
-                <Link href="#">
-                  <span className="text text__sm">
-                    See Details
-                  </span>
-                  <span className="icon">
-                    <svg width="5" height="10" viewBox="0 0 5 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.765312 0.984686L4.51531 4.73469C4.55018 4.76951 4.57784 4.81087 4.59671 4.8564C4.61558 4.90192 4.62529 4.95072 4.62529 5C4.62529 5.04928 4.61558 5.09808 4.59671 5.1436C4.57784 5.18913 4.55018 5.23048 4.51531 5.26531L0.765313 9.01531C0.712867 9.06782 0.646022 9.10358 0.57324 9.11807C0.500458 9.13257 0.425012 9.12514 0.356454 9.09673C0.287895 9.06833 0.229307 9.02022 0.188105 8.95849C0.146903 8.89677 0.124942 8.82421 0.125 8.75L0.125 1.25C0.124941 1.17579 0.146903 1.10323 0.188105 1.04151C0.229306 0.979783 0.287895 0.931674 0.356453 0.903266C0.425012 0.874858 0.500458 0.867432 0.57324 0.881926C0.646022 0.89642 0.712867 0.932182 0.765312 0.984686Z" fill="#696868"/>
-                    </svg>
-                  </span>
-                </Link>
-            </div>
+            <SectionHeader 
+              titleText="Budgets"
+              linkUrl="budgets"
+            />
+            
             {/* Box Header */}
-            <div className="content-box content-box__chart">
-                    <div className="content-box__innercircle"></div>
-                      <div className="content-box__innercircle-daten">
-                        <strong>
-                          <span className="sign text__lg text__bold">$</span>
-                          <span className="text text__lg text__bold">338</span> <br/>
-                          <span className="text-dark-300 text__xs">of $975 limit</span>
-                        </strong>
-                      </div>
-                    <Circle 
-                      options={{
-                        // rotation: -Math.PI / 4,
-                        // circumference: Math.PI,
-                        cutoutPercentage: 400,
-                        plugins:{
-                          
-                          legend:{
-                            display:false
-                          }
-                        }
-                      }}
-                      data={
-                        {
-                          tooltips: {enabled: false},
-                          labels:[
-                            "Entertainment",
-                            "Bills",
-                            "Dining Out",
-                            "Personal Care"
-                          ],
-                          
-                          datasets:[{
-                            label:"Budgets",
-                            data:[50,750,75,100],
-                            backgroundColor:[
-                              "rgb(39, 124, 120)",
-                              "rgb(130, 201, 215)",
-                              "rgb(242, 205, 172)",
-                              "rgb(98, 96, 112)"
-                            ]
-                          }]
-                        }
-                      }
-                    />
-                  
-            </div>
-            <div className="content-box--grid">
-            {/* Box with Line at the left side the classname text-... change the color of the line */}
-              <div className="content-box content-box--line-left text-second-green">
-                  <h5 className="text__sm  text-dark-200">Entertainment</h5>
-                  <div className="content-box__data text-dark-100">
-                    <p className="text__sm text__bold">
-                      $50.00
-                    </p>
-                  </div>
-              </div>
-            {/* Box with Line at the left side the classname text-... change the color of the line */}
-            {/* Box with Line at the left side the classname text-... change the color of the line */}
-              <div className="content-box content-box--line-left text-second-cyan">
-                  <h5 className="text__sm  text-dark-200">Bills</h5>
-                  <div className="content-box__data text-dark-100">
-                    <p className="text__sm text__bold">
-                      $750.00
-                    </p>
-                  </div>
-              </div>
-            {/* Box with Line at the left side the classname text-... change the color of the line */}
-             {/* Box with Line at the left side the classname text-... change the color of the line */}
-             <div className="content-box content-box--line-left text-second-yellow">
-                  <h5 className="text__sm  text-dark-200">Dining Out</h5>
-                  <div className="content-box__data text-dark-100">
-                    <p className="text__sm text__bold">
-                      $75.00
-                    </p>
-                  </div>
-              </div>
-            {/* Box with Line at the left side the classname text-... change the color of the line */}
-            {/* Box with Line at the left side the classname text-... change the color of the line */}
-            <div className="content-box content-box--line-left text-second-navy">
-                  <h5 className="text__sm  text-dark-200">Personal Care</h5>
-                  <div className="content-box__data text-dark-100">
-                    <p className="text__sm text__bold">
-                      $100.00
-                    </p>
-                  </div>
-              </div>
-            {/* Box with Line at the left side the classname text-... change the color of the line */}
+            <ContentboxChart jsonData={data}/>
+            
           </div>
-          </div>
-        </section>
-        <section className="section">
+        </Section>
+        <Section>
           <div className="content-box bg-light-400">
             {/* Box Header */}
-              <div className="content-box__header">
-                    <h3 className="content-box__title text__md">Budgets</h3>
-                    <Link href="#">
-                      <span className="text text__sm">
-                        See Details
-                      </span>
-                      <span className="icon">
-                        <svg width="5" height="10" viewBox="0 0 5 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0.765312 0.984686L4.51531 4.73469C4.55018 4.76951 4.57784 4.81087 4.59671 4.8564C4.61558 4.90192 4.62529 4.95072 4.62529 5C4.62529 5.04928 4.61558 5.09808 4.59671 5.1436C4.57784 5.18913 4.55018 5.23048 4.51531 5.26531L0.765313 9.01531C0.712867 9.06782 0.646022 9.10358 0.57324 9.11807C0.500458 9.13257 0.425012 9.12514 0.356454 9.09673C0.287895 9.06833 0.229307 9.02022 0.188105 8.95849C0.146903 8.89677 0.124942 8.82421 0.125 8.75L0.125 1.25C0.124941 1.17579 0.146903 1.10323 0.188105 1.04151C0.229306 0.979783 0.287895 0.931674 0.356453 0.903266C0.425012 0.874858 0.500458 0.867432 0.57324 0.881926C0.646022 0.89642 0.712867 0.932182 0.765312 0.984686Z" fill="#696868"/>
-                        </svg>
-                      </span>
-                    </Link>
-              </div>
+            <SectionHeader 
+              titleText="Recurring Bills"
+              linkUrl="/recurring-bills"
+            />
             {/* Box Header */}
             {/* Box width rounded line at left side*/}
             <div className="content-box__header content-box--line-left--rounded text-second-green bg-light-300">
@@ -306,7 +203,7 @@ const Home = ()  => {
             </div>
             {/*  Box width rounded line at left side */}
           </div>
-        </section>
+        </Section>
       </Container>
       {/* container end */}
     </>
