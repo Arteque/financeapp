@@ -85,6 +85,35 @@ textarea{
         max-width: 1060px;
     }
 }
+.grid-cols{
+    display:grid;
+    @include md{
+        display:grid; 
+    }
+}
+.grid-cols--2{
+    grid-template-columns: 1fr;
+    gap: var(--gap__24);
+    @include md{
+        grid-template-columns: 1fr 1fr;
+        
+    }
+}
+.full-height{
+    height: 100%;
+    align-self:stretch;
+    justify-self: stretch;
+    padding: 0;
+    margin: 0;
+}
+.grid-cols--3{
+    grid-template-columns: 1fr;
+    gap: var(--gap__24);
+    @include md{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
 ul[class]{
     list-style:none;
     margin: 0;
