@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import { Currency } from "@/libs/currency";
-import { BillsCalc } from "@/libs/BillsCalc";
+import { BillsCalc } from "@/libs/billscalc";
 
 const TotalAmount = ({db, category}) => {
 

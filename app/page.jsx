@@ -12,7 +12,6 @@ import { Currency } from "@/libs/currency";
 import { GetDate } from "@/libs/getDate";
 import ContentboxChart from "@/components/shared/ContentboxChart";
 import TotalAmount from "@/components/TotalAmount";
-import Number from "@/components/Number";
 
 // import Image from "next/image";
 const Home = ()  => {
