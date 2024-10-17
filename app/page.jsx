@@ -12,21 +12,20 @@ import { Currency } from "@/libs/currency";
 import { GetDate } from "@/libs/getDate";
 import ContentboxChart from "@/components/shared/ContentboxChart";
 import TotalAmount from "@/components/TotalAmount";
+import PotsCalc from "@/components/PotsCalc";
 
-// import Image from "next/image";
 const Home = ()  => {
 
 
   const dataTransactions = data.transactions
   const dataBalance = data.balance
-  const dataPots = data.pots
   
-  
+
 
   
   return (
     <>
-    
+      <PotsCalc data={data.pots}/>
       <Container className="container">
         <Pagetitle>
           Overview
