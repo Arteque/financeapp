@@ -30,9 +30,12 @@
     bottom: unset;
     grid-column: 1;
     grid-row: 1;
-    max-width: 300px;
+    min-width: 300px;
     border-radius: 0 var(--rounded) var(--rounded) 0;
     position: sticky;
     top: 0;
+    padding: 0;
+    bottom: 0;
+    height: 100svh;
   }
 }/*# sourceMappingURL=header.module.css.map */

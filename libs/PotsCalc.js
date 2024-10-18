@@ -9,4 +9,4 @@ const  PotsCalc = (items) => {
     return potsTargets, potsTotals
 }
 
-export {PotsCalc}
+export {PotsCalc} 

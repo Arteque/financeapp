@@ -1,6 +1,6 @@
-const ContentboxGrid = ({className, children}) => {
+const ContentboxGrid = ({className, children, ...props}) => {
     return (
-        <div className={`content-box--grid ${className ? className : ''}`}>
+        <div className={`content-box--grid ${className ? className : ''}`} {...props}>
             {children}
         </div>
     );

@@ -3,9 +3,6 @@ import Contentbox from "@/components/shared/Contentbox";
 import Pagetitle from "@/components/shared/Pagetitle";
 import Container from "@/components/shared/Container";
 import SectionHeader from "@/components/shared/SectionHeader";
-import Contentbox2Cols from "@/components/shared/Contentbox2Cols";
-import ContentboxGrid from "@/components/shared/ContentboxGrid";
-import ContentboxLineLeft from "@/components/shared/ContentboxLineLeft";
 import ContentboxAvtar from "@/components/shared/ContentboxAvtar";
 import data from "@/app/Api/data.json"
 import { Currency } from "@/libs/currency";
@@ -32,7 +29,7 @@ const Home = ()  => {
           Overview
         </Pagetitle>
         {/* Content Box Default */}
-        <Section className="grid-cols grid-cols--3">
+        <Section className="grid-cols grid-cols--3 ">
             {
               dataBalance && (
                   <>
@@ -71,7 +68,7 @@ const Home = ()  => {
             }
         </Section>
         
-        <PotsComponent limit={4}/>
+        <PotsComponent limit={4} />
          
 
         <Section>
@@ -98,7 +95,7 @@ const Home = ()  => {
         </Section> 
 
   
-        <Section>
+        <Section className="chart-section">
           <div className="content-box bg-light-400">
             {/* Box Header */}
             <SectionHeader 

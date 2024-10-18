@@ -23,6 +23,7 @@
   --third-gold:rgb(202, 179, 97);
   --third-orange:rgb(190, 108, 73);
   --public: "Public Sans", sans-serif;
+  --gap__40:40px;
   --gap__32:32px;
   --gap__24:24px;
   --gap__20: 20px;
@@ -228,9 +229,12 @@ body {
 }
 @media (min-width: 1070px) {
   body {
-    display: grid;
-    grid-template-columns: 0.6fr 1.4fr;
-    grid-template-rows: 1fr;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
 }
 
@@ -302,6 +306,10 @@ textarea {
           margin-block-end: var(--gap__20);
 }
 
+main {
+  width: 100%;
+}
+
 .container {
   max-width: 343px;
   margin-inline: auto;
@@ -315,7 +323,8 @@ textarea {
 }
 @media (min-width: 1070px) {
   .container {
-    max-width: 1060px;
+    max-width: 100%;
+    margin-inline: var(--gap__40);
   }
 }
 
@@ -335,6 +344,18 @@ textarea {
 @media (min-width: 768px) {
   .grid-cols--2 {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .chart-section .grid-cols--2 {
+    grid-template-columns: 507px 101px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pots-section .grid-cols--2 {
+    grid-template-columns: 247px 1fr;
   }
 }
 
@@ -429,6 +450,12 @@ button {
   row-gap: var(--gap__16);
 }
 
+@media (min-width: 768px) {
+  .chart-section .content-box--grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .content-box--line-left {
   position: relative;
   padding: 0;
@@ -491,6 +518,11 @@ button {
   max-width: -moz-fit-content;
   max-width: fit-content;
 }
+@media (min-width: 768px) {
+  .content-box__chart {
+    margin-inline: auto;
+  }
+}
 
 .content-box__innercircle {
   position: absolute;
@@ -529,6 +561,14 @@ button {
           flex-flow: row wrap;
   background-color: var(--light-200);
   border-radius: 50%;
+}
+
+@media (min-width: 1070px) {
+  .page-title {
+    padding-block: var(--gap__16);
+    -webkit-margin-after: var(--gap__32);
+            margin-block-end: var(--gap__32);
+  }
 }
 
 .main-header {
@@ -576,6 +616,79 @@ button {
 }
 .main-header nav ul a .text {
   display: none;
+}
+@media (min-width: 768px) {
+  .main-header nav ul {
+    gap: var(--gap__32);
+  }
+  .main-header nav ul li.current a .text {
+    color: var(--dark-100);
+  }
+  .main-header nav ul li a {
+    min-width: 104px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    padding: var(--gap__12) var(--gap__32);
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .main-header nav ul li a .text {
+    display: block;
+    font-weight: bolder;
+    white-space: nowrap;
+    color: var(--light-400);
+  }
+}
+@media (min-width: 1070px) {
+  .main-header .main-header__logo {
+    display: block;
+    padding-block: 9.6px;
+    -webkit-padding-start: var(--gap__32);
+            padding-inline-start: var(--gap__32);
+  }
+  .main-header nav ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    padding: 0;
+  }
+  .main-header nav ul li {
+    width: 100%;
+  }
+  .main-header nav ul li a {
+    -webkit-border-after: unset;
+            border-block-end: unset;
+    -webkit-border-start: 4px solid transparent;
+            border-inline-start: 4px solid transparent;
+    width: 100%;
+    display: block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    min-width: unset;
+    max-width: calc(100% - var(--gap__24));
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-padding-start: var(--gap__32);
+            padding-inline-start: var(--gap__32);
+    gap: var(--gap__16);
+  }
+  .main-header nav ul li.current a {
+    border-radius: 0 var(--rounded) var(--rounded) 0;
+    border-inline-start-color: var(--second-green);
+  }
 }
 
 a, .btn {

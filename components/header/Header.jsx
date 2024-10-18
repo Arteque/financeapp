@@ -4,22 +4,21 @@ import header from "./header.module.css"
 import Image from "next/image" 
 import Link from "next/link"
 //Icons
-import LogoLarge from "@/public/images/logo-large.svg"
-import LogoSmall from "@/public/images/logo-small.svg"
-import Overview from "@/public/images/icon-nav-overview.svg"
-import Transactions from "@/public/images/icon-nav-transactions.svg"
-import Budgets from "@/public/images/icon-nav-budgets.svg"
-import Pots from "@/public/images/icon-nav-pots.svg"
-import Recurringbills from "@/public/images/icon-nav-recurring-bills.svg"
-import Minimizemenu from "@/public/images/icon-minimize-menu.svg"
+import LogoLarge from "@/public/assets/images/logo-large.svg"
+import LogoSmall from "@/public/assets/images/logo-small.svg"
+
+import Minimizemenu from "@/public/assets/images/icon-minimize-menu.svg"
+import Pagetitle from "../shared/Pagetitle"
 
 
  const Header = () => {
   return (
    <header className={`main-header bg-dark-100 ${header.mainheader}`} id="main-header">
       <div className="main-header__logo">
-        <Image className={header.logolarge} src={LogoLarge} alt="Finance large logo" loading="eager" />
-        <Image className={header.logosmall} src={LogoSmall} alt="Finance small logo" loading="eager" />
+        <Pagetitle>
+            <Image className={header.logolarge} src={LogoLarge} alt="Finance large logo" loading="eager" />
+            <Image className={header.logosmall} src={LogoSmall} alt="Finance small logo" loading="eager" />
+        </Pagetitle>
       </div>
       <nav className="main-header__nav">
         <ul className="main-header__nav-items">
