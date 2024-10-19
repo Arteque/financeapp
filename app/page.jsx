@@ -24,12 +24,13 @@ const Home = ()  => {
   return (
     <>
      
-      <Container className="container">
+      <Container className="main-content main-content--start-page">
         <Pagetitle>
           Overview
         </Pagetitle>
         {/* Content Box Default */}
-        <Section className="grid-cols grid-cols--3 ">
+        <div className="main-content__content">
+        <Section className="grid-cols grid-cols--3 main-content__balance">
             {
               dataBalance && (
                   <>
@@ -71,7 +72,7 @@ const Home = ()  => {
         <PotsComponent limit={4} />
          
 
-        <Section>
+        <Section className="main-content__transactions">
             <Contentbox className="bg-light-400">
                 <SectionHeader 
                   titleText="Transaction" 
@@ -95,7 +96,7 @@ const Home = ()  => {
         </Section> 
 
   
-        <Section className="chart-section">
+        <Section className="chart-section main-content__chart">
           <div className="content-box bg-light-400">
             {/* Box Header */}
             <SectionHeader 
@@ -109,7 +110,7 @@ const Home = ()  => {
           </div>
         </Section>
 
-        <Section>
+        <Section className="main-content__bills">
           <div className="content-box bg-light-400">
             {/* Box Header */}
             <SectionHeader 
@@ -158,6 +159,7 @@ const Home = ()  => {
             {/*  Box width rounded line at left side */}
           </div>
         </Section>
+        </div>
 
       </Container>
       {/* container end */}

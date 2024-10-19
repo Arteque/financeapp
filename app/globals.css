@@ -328,6 +328,51 @@ main {
   }
 }
 
+.main-content .main-content__content {
+  container-name: maincontent;
+  container-type: inline-size;
+}
+@media (min-width: 1070px) {
+  .main-content .main-content__content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr auto;
+    gap: var(--gap__24);
+    max-width: 1060px;
+    width: 100%;
+  }
+  .main-content .main-content__content section {
+    margin: 0;
+    -ms-flex-item-align: stretch;
+        align-self: stretch;
+  }
+  .main-content .main-content__content section > div {
+    height: 100%;
+  }
+  .main-content .main-content__content .main-content__balance {
+    grid-column: 1/span 12;
+    grid-row: 1;
+    -webkit-margin-after: var(--gap__12);
+            margin-block-end: var(--gap__12);
+  }
+  .main-content .main-content__content .main-content__pots {
+    grid-column: 1/span 6;
+    grid-row: 2/span 3;
+  }
+  .main-content .main-content__content .main-content__transactions {
+    grid-column: 1/span 6;
+    grid-row: 5/span 2;
+  }
+  .main-content .main-content__content .main-content__chart {
+    grid-column: 7/span 6;
+    grid-row: 2/span 4;
+  }
+}
+.main-content .main-content__content .main-content__bills {
+  grid-column: 7/span 6;
+  grid-row: 6;
+}
+
 .grid-cols {
   display: grid;
 }
@@ -349,13 +394,18 @@ main {
 
 @media (min-width: 768px) {
   .chart-section .grid-cols--2 {
-    grid-template-columns: 507px 101px;
+    grid-template-columns: 1fr 0.5fr;
   }
 }
 
 @media (min-width: 768px) {
   .pots-section .grid-cols--2 {
-    grid-template-columns: 247px 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1070px) {
+  .pots-section .grid-cols--2 .total-saved {
+    max-width: 247px;
   }
 }
 
@@ -695,4 +745,31 @@ a, .btn {
   text-decoration: none;
   color: currentColor;
   padding: var(--gap__24);
+}
+
+.main-content__chart {
+  container-name: gridchart;
+  container-type: inline-size;
+}
+
+.main-content__pots {
+  container-name: gridPots;
+  container-type: inline-size;
+}
+
+@container gridchart ( width < 500px ) {
+  .chart-section .grid-cols--2 {
+    grid-template-columns: 1fr;
+  }
+  .chart-section .grid-cols--2 .content-box--grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@container gridPots ( width < 400px ) {
+  .chart-section .grid-cols--2 {
+    grid-template-columns: 1fr;
+  }
+  .chart-section .grid-cols--2 .content-box--grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }/*# sourceMappingURL=globals.css.map */

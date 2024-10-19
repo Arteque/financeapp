@@ -33,7 +33,7 @@ const PotsComponent = ({limit}) => {
 
 
     return (
-        <Section className="pots-section">
+        <Section className="pots-section main-content__pots">
           <Contentbox className="content-box--headfull bg-light-400">
               <SectionHeader
                 titleClassName="text__md"
