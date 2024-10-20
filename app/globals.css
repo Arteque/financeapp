@@ -595,7 +595,6 @@ button {
           transform: translate(-50%, -50%);
   text-align: center;
   aspect-ratio: 1;
-  width: 170px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -609,7 +608,6 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  background-color: var(--light-200);
   border-radius: 50%;
 }
 
@@ -765,7 +763,7 @@ a, .btn {
     grid-template-columns: 1fr 1fr;
   }
 }
-@container gridPots ( width < 400px ) {
+@container gridPots ( width < 441px ) {
   .chart-section .grid-cols--2 {
     grid-template-columns: 1fr;
   }

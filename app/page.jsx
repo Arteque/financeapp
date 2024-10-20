@@ -7,67 +7,31 @@ import ContentboxAvtar from "@/components/shared/ContentboxAvtar";
 import data from "@/app/Api/data.json"
 import { Currency } from "@/libs/currency";
 import { GetDate } from "@/libs/getDate";
-import ContentboxChart from "@/components/shared/ContentboxChart";
 import TotalAmount from "@/components/TotalAmount";
 import PotsComponent from "@/components/PotsComponent";
-
+import Budgets from "@/components/Budgets";
+import Global from "@/components/Global";
+import CalcData from "@/components/shared/CalcData";
 
 const Home = ()  => {
 
 
   const dataTransactions = data.transactions
-  const dataBalance = data.balance
+
   
 
 
   
   return (
     <>
-     
+     <CalcData />
       <Container className="main-content main-content--start-page">
         <Pagetitle>
           Overview
         </Pagetitle>
         {/* Content Box Default */}
         <div className="main-content__content">
-        <Section className="grid-cols grid-cols--3 main-content__balance">
-            {
-              dataBalance && (
-                  <>
-                      <Contentbox className="bg-dark-100 text-light-400">
-                        <h3 className="content-box__title text__sm">
-                          Current Balance
-                        </h3>
-                        <div className="content-box__data text__lg text__bold">
-                          <p>
-                            {Currency(dataBalance.current)}
-                          </p>
-                        </div>
-                      </Contentbox>
-                      <Contentbox className="bg-light-400">
-                          <h3 className="content-box__title text__sm">
-                            Income
-                          </h3>
-                          <div className="content-box__data text__lg text__bold">
-                            <p>
-                              {Currency(dataBalance.income)}
-                            </p>
-                          </div>
-                      </Contentbox>
-                      <Contentbox className="bg-light-400">
-                          <h3 className="content-box__title text__sm">
-                            Expenses
-                          </h3>
-                          <div className="content-box__data text__lg text__bold">
-                            <p>
-                              {Currency(dataBalance.expenses)}
-                            </p>
-                          </div>
-                      </Contentbox>
-                  </>
-              )
-            }
-        </Section>
+        <Global />
         
         <PotsComponent limit={4} />
          
@@ -96,19 +60,9 @@ const Home = ()  => {
         </Section> 
 
   
-        <Section className="chart-section main-content__chart">
-          <div className="content-box bg-light-400">
-            {/* Box Header */}
-            <SectionHeader 
-              titleText="Budgets"
-              linkUrl="budgets"
-            />
-            
-            {/* Box Header */}
-            <ContentboxChart jsonData={data}/>
-            
-          </div>
-        </Section>
+        {/* Budgets */}
+        <Budgets />
+        {/* Budgets */}
 
         <Section className="main-content__bills">
           <div className="content-box bg-light-400">

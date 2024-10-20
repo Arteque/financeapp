@@ -49,7 +49,10 @@ useEffect(() => {
                 {budgetData ? (
                     <Circle 
                       options={{
-                        cutoutPercentage: 400,
+                        radius: 130,
+                        cutout:100,
+                        borderWidth:0,
+                        hover:false,
                         plugins: {
                           legend: { display: false }
                         }

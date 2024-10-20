@@ -316,6 +316,7 @@ button{
     width: 205px;
     aspect-ratio: 1;
 }
+
 .content-box__innercircle-daten {
     position: absolute;
     top: 50%;
@@ -323,14 +324,15 @@ button{
     transform: translate(-50%, -50%);
     text-align: center;
     aspect-ratio: 1;
-    width: 170px;
+    // width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: row wrap;
-    background-color: var(--light-200);
+    // background-color: var(--light-200);
     border-radius: 50%;
 }
+    
 .page-title{
     @include lg{
         padding-block: var(--gap__16);
@@ -464,7 +466,7 @@ a,.btn{
             }
  }
 }
-@container gridPots ( width < 400px ){
+@container gridPots ( width < 441px ){
     .chart-section .grid-cols--2{
             grid-template-columns:1fr;
             .content-box--grid {
