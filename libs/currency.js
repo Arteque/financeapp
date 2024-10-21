@@ -3,5 +3,5 @@ export const Currency = (item) => {
         style: 'currency',
         currency:'USD'
     })
-    return usDollar.format(Number(item))
+    return usDollar.format(Number(item).toFixed(2))
 }

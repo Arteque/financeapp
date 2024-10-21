@@ -1,10 +1,10 @@
+import { OverviewData } from "@/libs/Calculate";
 import Section from "./shared/Section"
 import Contentbox from "./shared/Contentbox"
 import { Currency } from "@/libs/currency"
-import data from "@/app/Api/data.json"
+const Overview = () => {
 
-const Global = () => {
-    const dataBalance = data.balance
+    const dataBalance = OverviewData()
   return (
     <Section className="grid-cols grid-cols--3 main-content__balance">
             {
@@ -16,7 +16,7 @@ const Global = () => {
                         </h3>
                         <div className="content-box__data text__lg text__bold">
                           <p>
-                            {Currency(dataBalance.current)}
+                            {Currency(dataBalance.currentBalance)}
                           </p>
                         </div>
                       </Contentbox>
@@ -26,7 +26,7 @@ const Global = () => {
                           </h3>
                           <div className="content-box__data text__lg text__bold">
                             <p>
-                              {Currency(dataBalance.income)}
+                            {Currency(dataBalance.incomeTotal)}
                             </p>
                           </div>
                       </Contentbox>
@@ -36,7 +36,7 @@ const Global = () => {
                           </h3>
                           <div className="content-box__data text__lg text__bold">
                             <p>
-                              {Currency(dataBalance.expenses)}
+                            {Currency(dataBalance.billsTotal)}
                             </p>
                           </div>
                       </Contentbox>
@@ -45,6 +45,7 @@ const Global = () => {
             }
         </Section>
   )
-}
 
-export default Global
+};
+
+export default Overview;

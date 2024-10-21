@@ -12,7 +12,7 @@ const [budgetData, setBudgetData] = useState(null)
 const [data, setData] = useState(null)
 useEffect(() => {
   // Directly use the imported data
-  const budget = jsonData.budgets;
+  const budget = jsonData.data;
 
   setData(budget)
   // Create the chartData structure from the 'budget' key
@@ -36,7 +36,7 @@ useEffect(() => {
   return (
        <>
        
-        <div className="grid-cols grid-cols--2">
+        <div className="grid-cols grid-cols--2" style={{position:'relative'}} >
             <Contentbox className={`content-box__chart ${className ? className : ''}`}>
                 <div className="content-box__innercircle"></div>
                 <div className="content-box__innercircle-daten">
@@ -60,7 +60,15 @@ useEffect(() => {
                       data={budgetData}
                     />
                   ) : (
-                    <p>Loading...</p>
+                    <p style={{
+                      position:"absolute",
+                      inset:"0",
+                      display:"flex",
+                      alignitems:"center",
+                      justifyContent:"center"
+                    }}>
+                      <span>Loading...</span>
+                    </p>
                   )}
             </Contentbox>
             <ContentboxGrid style={{heihgt:'fit-content', alignSelf:'center'}}>

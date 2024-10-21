@@ -1,36 +1,16 @@
 'use client'
-
 import Section from "./shared/Section";
 import Contentbox from "./shared/Contentbox";
 import SectionHeader from "./shared/SectionHeader";
 import Contentbox2Cols from "./shared/Contentbox2Cols";
 import ContentboxGrid from "./shared/ContentboxGrid";
 import ContentboxLineLeft from "./shared/ContentboxLineLeft";
-import data from "@/app/Api/data.json"
-import { useEffect, useState } from "react";
+import { Pots } from "@/libs/Calculate";
 import { Currency } from "@/libs/currency";
 const PotsComponent = ({limit}) => {
 
-    const [pots, setPots] = useState(null)
-    const [potsTotal, setPotsTotal] = useState(null)
-
-    useEffect(() => {
-        setPots(data.pots)
-        
-        
-    const potsTotalArr = []
-    data.pots.forEach(item => potsTotalArr.push(Number(item.total)))
-    
-    const total = potsTotalArr.reduce(
-      (accu, cur) => accu + cur, 0
-    )
-    
-     setPotsTotal(Currency(total))
-
-},[])
-
-
-
+const pots = Pots().data
+const potsTotal = Pots().totalSaved
 
     return (
         <Section className="pots-section main-content__pots">

@@ -1,9 +1,9 @@
 // 'use client'
 import Contentbox from "./Contentbox";
 import Image from "next/image";
-const ContentboxAvtar = ({className, title, number, date, src}) => {
+const ContentboxAvtar = ({className, title, number, date, src, ...props}) => {
     return (
-        <Contentbox className={`content-box__avatar content-box__limit ${className ? className : ''}`}>
+        <Contentbox className={`content-box__avatar content-box__limit ${className ? className : ''}`} {...props}>
             <img alt={title} width={32} height={32} style={{borderRadius:"50%"}} src={src} />
               <h4 className="avatar__name">
                 {title}
