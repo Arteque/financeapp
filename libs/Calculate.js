@@ -116,6 +116,8 @@ export const BillsData = () => {
     
     const items = data.transactions
     const paidBillsArr = []
+    const upcommingBillsArr = []
+    const dueSoonArr = []
     //get the bills 
     const billsCatData = items.filter(transaction => transaction.category == 'Bills')
     billsCatData.forEach(item => {
@@ -130,17 +132,47 @@ export const BillsData = () => {
     //Date
     const date = new Date()
     const itemsDateIsPasst = items.forEach((item, index) => {
-        const date = item.date.split("T")[0]
-        const time = item.date.split("T")[1]
-        const dateSplit = date.split("-")
-        const dateParts =  {
-            year: dateSplit[0],
-            month: dateSplit[1],
-            day: dateSplit[2],
+        
+        // console.log(item.date)
+        const itemDateSplit = item.date.split("T")[0].split("-")
+        const itemTimeSplit = item.date.split("T")[1].split(":")
+        const itemDate = {
+            y:itemDateSplit[0],
+            m:itemDateSplit[1],
+            d:itemDateSplit[2]
+        } 
+        const itemTime = {
+            h:itemTimeSplit[0],
+            m:itemTimeSplit[1],
+            s:itemTimeSplit[2].replace("Z","")
+        } 
+
+        const itemGetTime = new Date(itemDate.y, itemDate.m - 1, itemDate.d, itemTime.h,itemTime.m,itemTime.s).getTime()
+        const itemGetTimeOneWeekLater = new Date(itemDate.y, itemDate.m - 1, itemDate.d + 7, itemTime.h,itemTime.m,itemTime.s).getTime()
+
+        const today = new Date()
+        const todayDate = {
+            y: today.getFullYear(),
+            m:today.getMonth()+1,
+            d:today.getDate()
+        }
+        const todayTime = {
+            h: today.getHours(),
+            m:today.getMinutes(),
+            s:today.getSeconds()
+        }
+
+        const todayGetTime = new Date().getTime()
+        if(itemGetTime > todayGetTime){
+            item.upcomming = true
+            upcommingBillsArr.push(item)
+            if((itemGetTime - todayGetTime) < itemGetTimeOneWeekLater){
+                    item.duesoon = true
+                    dueSoonArr.push(item)
+            }
         }
         
-        console.log(dateParts.year, dateParts.month, dateParts.day + "/n" + 
-            item.name + "  " + new Date(dateParts.year,  dateParts.month - 2, dateParts.day))
+
     })
     
     
@@ -150,7 +182,7 @@ export const BillsData = () => {
         "paidBills": Number.parseFloat(paidBillsAmount).toFixed(2),
     }
 
-    
+    console.log(render)
     return render
 
 }
