@@ -17,7 +17,7 @@
             "avatar": "/assets/images/avatars/savory-bites-bistro.jpg",
             "name": "Savory Bites Bistro",
             "category": "Dining Out",
-            "date": "2024-08-19T20:23:11Z",
+            "date": "2024-10-30T20:23:11Z",
             "amount": -55.50,
             "recurring": false
         },
@@ -137,7 +137,7 @@
             "avatar": "/assets/images/avatars/elevate-education.jpg",
             "name": "Elevate Education",
             "category": "Education",
-            "date": "2024-08-04T11:15:22Z",
+            "date": "2024-11-04T11:15:22Z",
             "amount": -50.00,
             "recurring": true
         },

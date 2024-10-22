@@ -1,4 +1,5 @@
 import data from "@/app/Api/data.json" 
+import next from "next"
 
 //Global Functions
 
@@ -115,71 +116,53 @@ export const TransactionsData = () => {
 export const BillsData = () => {
     
     const items = data.transactions
+    const recurring = items.filter(item => item.recurring)
     const paidBillsArr = []
-    const upcommingBillsArr = []
-    const dueSoonArr = []
-    //get the bills 
-    const billsCatData = items.filter(transaction => transaction.category == 'Bills')
-    billsCatData.forEach(item => {
-        paidBillsArr.push(Number(item.amount))
-    })
+    const upcomingBillsArr = []
+    // Get the date and the date ms for the camparaison 
+    const todayDate = new Date()
+    const todayGetTime = todayDate.getTime()
 
-    const paidBillsAmount = paidBillsArr.reduce((accu, cur)=> accu + cur,0)
+     recurring.forEach(item => {
+            item.dateGetTime = new Date(item.date).getTime()
+            item.todayDate = todayDate.toJSON()
+            item.todayDateGetTime = todayGetTime
 
-    
-    
-    
-    //Date
-    const date = new Date()
-    const itemsDateIsPasst = items.forEach((item, index) => {
-        
-        // console.log(item.date)
-        const itemDateSplit = item.date.split("T")[0].split("-")
-        const itemTimeSplit = item.date.split("T")[1].split(":")
-        const itemDate = {
-            y:itemDateSplit[0],
-            m:itemDateSplit[1],
-            d:itemDateSplit[2]
-        } 
-        const itemTime = {
-            h:itemTimeSplit[0],
-            m:itemTimeSplit[1],
-            s:itemTimeSplit[2].replace("Z","")
-        } 
+            const theDate = new Date(item.date)
+            const nextMonth = new Date(theDate)
 
-        const itemGetTime = new Date(itemDate.y, itemDate.m - 1, itemDate.d, itemTime.h,itemTime.m,itemTime.s).getTime()
-        const itemGetTimeOneWeekLater = new Date(itemDate.y, itemDate.m - 1, itemDate.d + 7, itemTime.h,itemTime.m,itemTime.s).getTime()
+            nextMonth.setMonth(new Date().getMonth() + 1)
+            nextMonth.setDate(theDate.getDate())
 
-        const today = new Date()
-        const todayDate = {
-            y: today.getFullYear(),
-            m:today.getMonth()+1,
-            d:today.getDate()
-        }
-        const todayTime = {
-            h: today.getHours(),
-            m:today.getMinutes(),
-            s:today.getSeconds()
-        }
+            item.dateGetTime < todayGetTime ? (
+            item.dateIsPassed=true,
+            item.billPaid = true,
+            item.nextBill = nextMonth.toJSON(),
+            paidBillsArr.push(item)
+        ) : (
+            item.dateIsPassed = false,
+            item.nextBill = nextMonth.toJSON(),
+            upcomingBillsArr.push(item)
+        )
 
-        const todayGetTime = new Date().getTime()
-        if(itemGetTime > todayGetTime){
-            item.upcomming = true
-            upcommingBillsArr.push(item)
-            if((itemGetTime - todayGetTime) < itemGetTimeOneWeekLater){
-                    item.duesoon = true
-                    dueSoonArr.push(item)
-            }
-        }
-        
 
-    })
-    
-    
-    itemsDateIsPasst
+        const duesoon_day = new Date(2024,29,10).getDate() + 4
+        console.log(duesoon_day)
+     })
+
+
+     
+
     const render = {
         "data":items,
-        "paidBills": Number.parseFloat(paidBillsAmount).toFixed(2),
+        "recurring":recurring,
+        "billsTotal":Math.abs(recurring.reduce((acc, cur) => acc + cur.amount, 0)),
+        "paidBills":paidBillsArr,
+        "paidBillsCount":paidBillsArr.length,
+        "paidBillsTotal":Math.abs(paidBillsArr.reduce((acc, cur) => acc + cur.amount, 0)).toFixed(2),
+        "upcomingBills":upcomingBillsArr,
+        "upcomingBillsCount":upcomingBillsArr.length,
+        "upcomingBillsTotal":Math.abs(upcomingBillsArr.reduce((acc, cur) => acc + cur.amount,0)).toFixed(2)
     }
 
     console.log(render)
