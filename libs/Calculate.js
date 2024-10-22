@@ -122,6 +122,7 @@ export const BillsData = () => {
     // Get the date and the date ms for the camparaison 
     const todayDate = new Date()
     const todayGetTime = todayDate.getTime()
+    const milliSecondsperDay = 1000 * 60 * 60 * 24
 
      recurring.forEach(item => {
             item.dateGetTime = new Date(item.date).getTime()
@@ -134,20 +135,31 @@ export const BillsData = () => {
             nextMonth.setMonth(new Date().getMonth() + 1)
             nextMonth.setDate(theDate.getDate())
 
-            item.dateGetTime < todayGetTime ? (
-            item.dateIsPassed=true,
-            item.billPaid = true,
-            item.nextBill = nextMonth.toJSON(),
+            if(item.dateGetTime < todayGetTime) {
+            item.dateIsPassed=true
+            item.billPaid = true
+            item.nextBill = nextMonth.toJSON()
+            
             paidBillsArr.push(item)
-        ) : (
+            } else {
             item.dateIsPassed = false,
-            item.nextBill = nextMonth.toJSON(),
+            item.nextBill = nextMonth.toJSON()
             upcomingBillsArr.push(item)
-        )
-
-
-        const duesoon_day = new Date(2024,29,10).getDate() + 4
-        console.log(duesoon_day)
+            
+            
+            }
+            const duesoon = new Date()
+            duesoon.setDate(duesoon.getDate() + 4)
+            item.duesoondatelimit = duesoon.toJSON()
+            const duesoon_getTime = duesoon.getTime()
+            item.duesoondatelimitintime = duesoon_getTime
+            if(new Date(item.nextBill).getTime()  <= duesoon_getTime){
+                item.daysleft = Math.floor((new Date(item.nextBill).getTime() - todayGetTime) / milliSecondsperDay)
+                item.duesoon = true
+            }else{
+                item.duesoon = false
+            }
+        
      })
 
 
