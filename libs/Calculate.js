@@ -128,32 +128,23 @@ export const BillsData = () => {
             item.dateGetTime = new Date(item.date).getTime()
             item.todayDate = todayDate.toJSON()
             item.todayDateGetTime = todayGetTime
-
-            const theDate = new Date(item.date)
-            const nextMonth = new Date(theDate)
-
-            nextMonth.setMonth(new Date().getMonth() + 1)
-            nextMonth.setDate(theDate.getDate())
-
-            if(item.dateGetTime < todayGetTime) {
-            item.dateIsPassed=true
-            item.billPaid = true
-            item.nextBill = nextMonth.toJSON()
             
-            paidBillsArr.push(item)
-            } else {
-            item.dateIsPassed = false,
-            item.nextBill = nextMonth.toJSON()
-            upcomingBillsArr.push(item)
+           
+            const currentDate = new Date()
+            const itemDate = new Date(item.date)
+
             
-            
-            }
+            item.nextBillDate = recurringNextDateBill(itemDate, currentDate).nextBilldDate
+            item.nextBillDateGetTime = recurringNextDateBill(itemDate, currentDate).nextBillDateGetTime
+
+
+
             const duesoon = new Date()
             duesoon.setDate(duesoon.getDate() + 4)
             item.duesoondatelimit = duesoon.toJSON()
             const duesoon_getTime = duesoon.getTime()
             item.duesoondatelimitintime = duesoon_getTime
-            if(new Date(item.nextBill).getTime()  <= duesoon_getTime){
+            if(item.nextBillDateGetTime  <= duesoon_getTime){
                 item.daysleft = Math.floor((new Date(item.nextBill).getTime() - todayGetTime) / milliSecondsperDay)
                 item.duesoon = true
             }else{
@@ -180,4 +171,30 @@ export const BillsData = () => {
     console.log(render)
     return render
 
+}
+
+
+const recurringNextDateBill = (billDate, currentDate) => {
+    let billDateGetTime = billDate.getTime()
+    let currentDateGetTime = currentDate.getTime()
+    let billDateMonth = billDate.getMonth()
+    let currenDateMonth = currentDate.getMonth()
+
+
+    if(billDateMonth == currenDateMonth){
+        return {
+            "nextBilldDate":billDate.toJSON(),
+            "nextBillDateGetTime":billDate.getTime()
+        }
+    }else{
+        while(billDateGetTime < currentDateGetTime){
+            billDate.setMonth(billDate.getMonth()+1)
+            billDateGetTime = billDate
+            currentDateGetTime = currentDate
+        }
+        return {
+            "nextBilldDate":billDate.toJSON(),
+            "nextBillDateGetTime":billDate.getTime()
+        }
+    }    
 }
