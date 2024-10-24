@@ -116,13 +116,13 @@ export const TransactionsData = () => {
 export const BillsData = () => {
     
     //Dates
-    const currentDate = new Date()
-    const currenDateJSON = {
-        "date":currentDate.toJSON(),
-        "date-in-seconds":currentDate.getTime(),
-        "month":currentDate.getMonth(),
-        "day":currentDate.getDate(),
-        "year":currentDate.getFullYear()    
+    const today = new Date()
+    const currentDate = {
+        "date":today.toJSON(),
+        "date-in-seconds":today.getTime(),
+        "month":today.getMonth(),
+        "day":today.getDate(),
+        "year":today.getFullYear()    
     }
 
 
@@ -130,12 +130,21 @@ export const BillsData = () => {
     const recurringBills = data.transactions.filter(item => item.recurring)
 
 
+    //Recuring Bills
+
+    recurringBills.forEach(item => {
+        //get day
+        item.dueDate = new Date(item.date).getDate()
+        item.paid = item.dueDate < currentDate.day ? true: false
+        
+    })
+
 
     // Return the data
     const render = {
         "data": data.transactions,
         "recurring-bills":recurringBills,
-        "today":currenDateJSON
+        "today":currentDate
     }
 
     //console for test
@@ -143,9 +152,4 @@ export const BillsData = () => {
 
     return render
 
-}
-
-
-const recurringNextDateBill = (billDate, currentDate) => {
-    
 }
