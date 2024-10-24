@@ -1,7 +1,5 @@
 'use client'
 import { useEffect, useState } from "react";
-import { Currency } from "@/libs/currency";
-import { BillsCalc } from "@/libs/billscalc";
 
 const TotalAmount = ({db, category}) => {
 
@@ -9,7 +7,7 @@ const TotalAmount = ({db, category}) => {
 
     useEffect(() => {
 
-        setAmount(Currency(Math.abs(BillsCalc(db, category)).toFixed(2)))
+       // setAmount(Currency(Math.abs(BillsCalc(db, category)).toFixed(2)))
 
     },[])
 

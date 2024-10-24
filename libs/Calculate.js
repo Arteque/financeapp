@@ -1,5 +1,4 @@
 import data from "@/app/Api/data.json" 
-import next from "next"
 
 //Global Functions
 
@@ -106,7 +105,6 @@ export const TransactionsData = () => {
     const render = {
         "data":data.transactions
     }
-    console.log(render)
     return render
 }
 
@@ -115,6 +113,11 @@ export const TransactionsData = () => {
 //Bills 
 export const BillsData = () => {
     
+    //Const
+    const paidBillsArr = []
+    const upcommingBillsArr = []
+    const dueSoonBillsArr = []
+
     //Dates
     const today = new Date()
     const currentDate = {
@@ -135,16 +138,38 @@ export const BillsData = () => {
     recurringBills.forEach(item => {
         //get day
         item.dueDate = new Date(item.date).getDate()
-        item.paid = item.dueDate < currentDate.day ? true: false
-        
+        //Paid and Not Paid  Bills based on the current day of the month (Assuming that the Amounts paid automatically)
+        item.paid = item.dueDate < currentDate.day ? true : false
+        // if the item is paid push it to paidbills array. If not push the item to the upcomming bills
+        item.paid ? paidBillsArr.push(item) : upcommingBillsArr.push(item)
     })
 
 
+    //DUESOON bills from the upcommingBills
+    upcommingBillsArr.forEach(item => {
+        const amountDaysNeededforSoon = 4
+        const itemDate = new Date(item.date).getDate()
+        // if the item is inside the upcomingBills array, that's mean: the item date is bigger the current date
+        itemDate - currentDate.day < amountDaysNeededforSoon && dueSoonBillsArr.push(item)
+    })
+
     // Return the data
+    const paidBills  = paidBillsArr.reduce((acc, cur) => acc + cur.amount, 0)
+    const upcommingBills  = upcommingBillsArr.reduce((acc, cur) => acc + cur.amount, 0)
+    const dueSoonBills = dueSoonBillsArr.reduce((acc, cur) => acc + cur.amount, 0)
+
+    
+
     const render = {
-        "data": data.transactions,
-        "recurring-bills":recurringBills,
-        "today":currentDate
+        "data": TransactionsData(),
+        "recurringBills":recurringBills,
+        "today":currentDate,
+        "paidBills": Math.abs(paidBills),
+        "paidBills__count":paidBillsArr.length,
+        "upcommingBills": Math.abs(upcommingBills),
+        "upcomingBills__count":upcommingBillsArr.length,
+        "dueSoon": Math.abs(dueSoonBills),
+        "dueSoon__count":dueSoonBillsArr.length
     }
 
     //console for test

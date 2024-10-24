@@ -6,7 +6,6 @@ import Contentbox2Cols from "./shared/Contentbox2Cols";
 import ContentboxGrid from "./shared/ContentboxGrid";
 import ContentboxLineLeft from "./shared/ContentboxLineLeft";
 import { Pots } from "@/libs/Calculate";
-import { Currency } from "@/libs/currency";
 const PotsComponent = ({limit}) => {
 
 const pots = Pots().data

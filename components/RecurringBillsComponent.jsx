@@ -1,12 +1,12 @@
 'use client'
+import { Currency } from "@/libs/currency";
 import Section from "./shared/Section";
 import SectionHeader from "./shared/SectionHeader";
-import TotalAmount from "./TotalAmount";
 import { BillsData } from "@/libs/Calculate";
 
-const BillsComponent = () => {
+const RecurringBillsComponent = () => {
 
-    const bills = BillsData().data
+   BillsData()
     
     return (
         <Section className="main-content__bills">
@@ -24,7 +24,7 @@ const BillsComponent = () => {
               </h4>
               <div className="data text-dark-100 text__bold">
                 <span className="text">
-                  <TotalAmount db={bills} category="Bills"  />
+                  {Currency(Number(BillsData().paidBills))}
                 </span>
               </div>
             </div>
@@ -36,7 +36,7 @@ const BillsComponent = () => {
               </h4>
               <div className="data text-dark-100 text__bold">
                 <span className="text">
-                  194.98
+                  {Currency(BillsData().upcommingBills)}
                 </span>
               </div>
             </div>
@@ -47,11 +47,8 @@ const BillsComponent = () => {
                 Due Soon
               </h4>
               <div className="data text-dark-100 text__bold">
-                <span className="sign">
-                  $
-                </span>
                 <span className="text">
-                  59.98
+                  {Currency(BillsData().dueSoon)}
                 </span>
               </div>
             </div>
@@ -61,4 +58,4 @@ const BillsComponent = () => {
     );
 };
 
-export default BillsComponent;
+export default RecurringBillsComponent;
