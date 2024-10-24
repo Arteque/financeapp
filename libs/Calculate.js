@@ -115,86 +115,37 @@ export const TransactionsData = () => {
 //Bills 
 export const BillsData = () => {
     
-    const items = data.transactions
-    const recurring = items.filter(item => item.recurring)
-    const paidBillsArr = []
-    const upcomingBillsArr = []
-    // Get the date and the date ms for the camparaison 
-    const todayDate = new Date()
-    const todayGetTime = todayDate.getTime()
-    const milliSecondsperDay = 1000 * 60 * 60 * 24
-
-     recurring.forEach(item => {
-            item.dateGetTime = new Date(item.date).getTime()
-            item.todayDate = todayDate.toJSON()
-            item.todayDateGetTime = todayGetTime
-            
-           
-            const currentDate = new Date()
-            const itemDate = new Date(item.date)
-
-            
-            item.nextBillDate = recurringNextDateBill(itemDate, currentDate).nextBilldDate
-            item.nextBillDateGetTime = recurringNextDateBill(itemDate, currentDate).nextBillDateGetTime
-
-
-
-            const duesoon = new Date()
-            duesoon.setDate(duesoon.getDate() + 4)
-            item.duesoondatelimit = duesoon.toJSON()
-            const duesoon_getTime = duesoon.getTime()
-            item.duesoondatelimitintime = duesoon_getTime
-            if(item.nextBillDateGetTime  <= duesoon_getTime){
-                item.daysleft = Math.floor((new Date(item.nextBill).getTime() - todayGetTime) / milliSecondsperDay)
-                item.duesoon = true
-            }else{
-                item.duesoon = false
-            }
-        
-     })
-
-
-     
-
-    const render = {
-        "data":items,
-        "recurring":recurring,
-        "billsTotal":Math.abs(recurring.reduce((acc, cur) => acc + cur.amount, 0)),
-        "paidBills":paidBillsArr,
-        "paidBillsCount":paidBillsArr.length,
-        "paidBillsTotal":Math.abs(paidBillsArr.reduce((acc, cur) => acc + cur.amount, 0)).toFixed(2),
-        "upcomingBills":upcomingBillsArr,
-        "upcomingBillsCount":upcomingBillsArr.length,
-        "upcomingBillsTotal":Math.abs(upcomingBillsArr.reduce((acc, cur) => acc + cur.amount,0)).toFixed(2)
+    //Dates
+    const currentDate = new Date()
+    const currenDateJSON = {
+        "date":currentDate.toJSON(),
+        "date-in-seconds":currentDate.getTime(),
+        "month":currentDate.getMonth(),
+        "day":currentDate.getDate(),
+        "year":currentDate.getFullYear()    
     }
 
+
+    //Recurring Bills
+    const recurringBills = data.transactions.filter(item => item.recurring)
+
+
+
+    // Return the data
+    const render = {
+        "data": data.transactions,
+        "recurring-bills":recurringBills,
+        "today":currenDateJSON
+    }
+
+    //console for test
     console.log(render)
+
     return render
 
 }
 
 
 const recurringNextDateBill = (billDate, currentDate) => {
-    let billDateGetTime = billDate.getTime()
-    let currentDateGetTime = currentDate.getTime()
-    let billDateMonth = billDate.getMonth()
-    let currenDateMonth = currentDate.getMonth()
-
-
-    if(billDateMonth == currenDateMonth){
-        return {
-            "nextBilldDate":billDate.toJSON(),
-            "nextBillDateGetTime":billDate.getTime()
-        }
-    }else{
-        while(billDateGetTime < currentDateGetTime){
-            billDate.setMonth(billDate.getMonth()+1)
-            billDateGetTime = billDate
-            currentDateGetTime = currentDate
-        }
-        return {
-            "nextBilldDate":billDate.toJSON(),
-            "nextBillDateGetTime":billDate.getTime()
-        }
-    }    
+    
 }
