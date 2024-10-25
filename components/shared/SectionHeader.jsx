@@ -1,8 +1,9 @@
 import Link from "next/link";
+import ContentBoxHeader from "./ContentBoxHeader";
 
 const SectionHeader = ({titleClassName, titleText, linkUrl, linkText}) => {
     return (
-        <div className="content-box__header">
+        <ContentBoxHeader>
             <h3 className={`content-box__title ${titleClassName ? titleClassName : ''}`}>
                 {titleText}
             </h3>
@@ -16,7 +17,7 @@ const SectionHeader = ({titleClassName, titleText, linkUrl, linkText}) => {
                     </svg>
                 </span>
             </Link>
-        </div>
+        </ContentBoxHeader>
     );
 };
 

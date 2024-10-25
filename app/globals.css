@@ -770,4 +770,99 @@ a, .btn {
   .chart-section .grid-cols--2 .content-box--grid {
     grid-template-columns: 1fr 1fr;
   }
+}
+.main-content__header.filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: var(--gap__16);
+  width: 100%;
+}
+
+.filter__dropdown {
+  position: relative;
+  z-index: 0;
+}
+.filter__dropdown.open {
+  z-index: 10;
+}
+.filter__dropdown button {
+  font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.filter__dropdown button .text {
+  color: var(--dark-200);
+}
+.filter__dropdown button .selectedValue {
+  min-width: 150px;
+  padding: var(--gap__16) var(--gap__32);
+  border-radius: var(--rounded);
+  border: 1px solid var(--dark-300);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: var(--gap__16);
+}
+.filter__dropdown button .icon {
+  display: none;
+}
+.filter__dropdown ul.items__childs {
+  border-radius: var(--rounded);
+  background-color: var(--light-400);
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 120%;
+  opacity: 0;
+  -webkit-box-shadow: 2px 3px 10px hsla(0, 0%, 0%, 0.063);
+          box-shadow: 2px 3px 10px hsla(0, 0%, 0%, 0.063);
+  pointer-events: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.filter__dropdown ul.items__childs.open {
+  opacity: 1;
+  top: 100%;
+  pointer-events: all;
+}
+.filter__dropdown ul.items__childs li {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  padding: var(--gap__12) var(--gap__40);
+  cursor: pointer;
+  position: relative;
+}
+.filter__dropdown ul.items__childs li:hover {
+  background-color: var(--light-300);
+}
+.filter__dropdown ul.items__childs li.current {
+  font-weight: 900;
+}
+.filter__dropdown ul.items__childs li:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  inset-inline: 20px;
+  height: 2px;
+  background-color: var(--light-300);
 }/*# sourceMappingURL=globals.css.map */

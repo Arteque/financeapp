@@ -6,20 +6,27 @@ import { GetDate } from "@/libs/getDate";
 import { Currency } from "@/libs/currency";
 import { TransactionsData } from "@/libs/Calculate";
 
-const TransactionsComponent = () => {
+const TransactionsComponent = ({limit, showHeader}) => {
 
     const dataTransactions = TransactionsData().data
 
     return (
         <Section className="main-content__transactions">
             <Contentbox className="bg-light-400">
-                <SectionHeader 
-                  titleText="Transaction" 
-                  linkUrl="transaction"
-                />
+
+               {
+                showHeader && (
+                    <SectionHeader 
+                    titleText="Transaction" 
+                    linkUrl="transaction"
+                  />
+                )
+               }
+
+
               {
               dataTransactions && dataTransactions.map((item,index) => {
-                if(index < 5) 
+                if(index < limit) 
                     {
                       return <ContentboxAvtar                   
                               key={index}

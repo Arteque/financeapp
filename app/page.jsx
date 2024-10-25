@@ -24,10 +24,10 @@ const Home = ()  => {
           <Overview />
           {/* Overview */}
           {/* Pots */}
-          <PotsComponent limit={'4'} />
+          <PotsComponent limit="4" />
           {/* Pots */}
           {/* Transactions */}
-          <TransactionsComponent />
+          <TransactionsComponent limit="4" showHeader={true}/>
           {/* Transactions */}
           {/* Budgets */}
           <Budgets />

@@ -1,0 +1,5 @@
+.filter__dropdown button {
+    padding: var(--padding);
+    border-radius: var(--rounded);
+    border: 1px solid var(--dark-300);
+}
