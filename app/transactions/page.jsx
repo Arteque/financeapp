@@ -9,16 +9,16 @@ const page = () => {
 
   return (
     <>
-      <Container> 
+      <Container className="main-content__container"> 
         <Pagetitle>
           Transactions
         </Pagetitle>
-        <Section className="bg-light-400 rounded">
+        <Section className="bg-light-400 rounded main-content__content">
             <Container className="padding">
                 <ContentBoxHeader>
                   <Filter />
                 </ContentBoxHeader>
-            <TransactionsComponent limit="100" showHeader={false}/>
+            <TransactionsComponent showHeader={false} start={false}/>
             </Container>
         </Section>
       </Container>

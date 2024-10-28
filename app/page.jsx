@@ -27,7 +27,7 @@ const Home = ()  => {
           <PotsComponent limit="4" />
           {/* Pots */}
           {/* Transactions */}
-          <TransactionsComponent limit="4" showHeader={true}/>
+          <TransactionsComponent limit="5" showHeader={true} start={true}/>
           {/* Transactions */}
           {/* Budgets */}
           <Budgets />

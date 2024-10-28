@@ -1,7 +1,8 @@
 export const Currency = (item) => {
     const usDollar = new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency:'USD'
-    })
-    return usDollar.format(Number(item).toFixed(2))
+        currency:'USD',
+        minimumFractionDigits:2
+    }).format(Math.abs(item))
+    return item >= 0 ? `+${usDollar}` : `-${usDollar}`
 }

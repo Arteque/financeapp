@@ -2,13 +2,16 @@ import Section from "./shared/Section";
 import Contentbox from "./shared/Contentbox";
 import SectionHeader from "./shared/SectionHeader";
 import ContentboxAvtar from "./shared/ContentboxAvtar";
-import { GetDate } from "@/libs/getDate";
 import { Currency } from "@/libs/currency";
 import { TransactionsData } from "@/libs/Calculate";
+import { PosOrNegNumb } from "@/libs/Calculate";
 
-const TransactionsComponent = ({limit, showHeader}) => {
+const TransactionsComponent = ({limit, showHeader, start}) => {
 
     const dataTransactions = TransactionsData().data
+
+   
+    
 
     return (
         <Section className="main-content__transactions">
@@ -25,18 +28,30 @@ const TransactionsComponent = ({limit, showHeader}) => {
 
 
               {
-              dataTransactions && dataTransactions.map((item,index) => {
-                if(index < limit) 
-                    {
-                      return <ContentboxAvtar                   
-                              key={index}
-                              src={item.avatar}
-                              title={item.name}
-                              date={GetDate(item.date)}
-                              number={Currency(item.amount)}                             
+              dataTransactions && dataTransactions.map((item,index) => (
+                  start ? (
+                      index < limit && (
+                        <ContentboxAvtar                   
+                                key={index}
+                                src={item.avatar}
+                                title={item.name}
+                                date={item.date}
+                                number={Currency(item.amount)}
+                                className={PosOrNegNumb(item)}
+                              />
+                    )
+                  ):(
+                        <ContentboxAvtar                   
+                                key={index}
+                                src={item.avatar}
+                                title={item.name}
+                                date={item.date}
+                                number={Currency(item.amount)}
+                                category={item.category}
                             />
-                    }
-                })
+                  )
+                )
+              )
             }
             </Contentbox>
         </Section> 

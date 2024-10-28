@@ -178,3 +178,8 @@ export const BillsData = () => {
     return render
 
 }
+
+
+export const PosOrNegNumb = (item) => {
+    return Math.abs(item)
+}
