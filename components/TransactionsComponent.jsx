@@ -37,18 +37,21 @@ const TransactionsComponent = ({limit, showHeader, start}) => {
                                 title={item.name}
                                 date={item.date}
                                 number={Currency(item.amount)}
-                                className={PosOrNegNumb(item)}
+                                className={PosOrNegNumb(item.amount) == "-1" ? "out-amount":"in-amount"}
                               />
                     )
                   ):(
-                        <ContentboxAvtar                   
+                        index < limit && (
+                          <ContentboxAvtar                   
                                 key={index}
                                 src={item.avatar}
                                 title={item.name}
                                 date={item.date}
                                 number={Currency(item.amount)}
                                 category={item.category}
+                                className={PosOrNegNumb(item.amount) == "-1" ? "out-amount":"in-amount"}
                             />
+                        )
                   )
                 )
               )

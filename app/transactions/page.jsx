@@ -16,9 +16,18 @@ const page = () => {
         <Section className="bg-light-400 rounded main-content__content">
             <Container className="padding">
                 <ContentBoxHeader>
-                  <Filter />
+                    <Filter />
                 </ContentBoxHeader>
-            <TransactionsComponent showHeader={false} start={false}/>
+                <div className="page">
+                  <TransactionsComponent showHeader={false} start={false} limit={10}/>
+                </div>
+                <div className="pagination">
+                  <div className="pagination__left"></div>
+                  <ul className="pagination__pages">
+                    <li className="pagination__page">1</li>
+                  </ul>
+                  <div className="pagination__right"></div>
+                </div>
             </Container>
         </Section>
       </Container>

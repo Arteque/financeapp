@@ -181,5 +181,5 @@ export const BillsData = () => {
 
 
 export const PosOrNegNumb = (item) => {
-    return Math.abs(item)
+    return Math.sign(item)
 }

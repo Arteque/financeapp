@@ -14,11 +14,11 @@ const ContentboxAvtar = ({className, title, number, date, src,category, ...props
                 </span>
                 
               </h4>
-              <p className="content-box__category">
+              <p className="content-box__category text__xs text__light-300">
                 {category && category}
               </p>
               <p className="content-box__amount" style={{textAlign:'right'}}>
-                <span className="text-second-green text__bold">
+                <span className="text__bold">
                   {number && number}
                 </span>
               </p>

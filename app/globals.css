@@ -545,9 +545,15 @@ button {
   padding-inline: 0;
   position: relative;
   display: grid;
-  grid-template-columns: 0.3fr 1fr 1fr 1fr;
+  grid-template-columns: auto 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: var(--gap__16);
+}
+.content-box__avatar.out-amount .content-box__amount {
+  color: var(--dark-100);
+}
+.content-box__avatar.in-amount .content-box__amount {
+  color: var(--second-green);
 }
 .content-box__avatar > img {
   grid-column: 1;
@@ -579,6 +585,13 @@ button {
   height: 1px;
   background-color: var(--dark-100);
   opacity: 0.2;
+}
+.content-box__avatar:has(.content-box__category) .avatar__name {
+  grid-row: 1;
+}
+.content-box__avatar:has(.content-box__category) .content-box__category {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .content-box__chart {
@@ -843,6 +856,9 @@ a, .btn {
   gap: var(--gap__16);
 }
 .filter__dropdown button .icon {
+  display: block;
+}
+.filter__dropdown button .text {
   display: none;
 }
 .filter__dropdown ul.items__childs {
