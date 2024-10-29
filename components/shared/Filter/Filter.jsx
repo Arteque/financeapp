@@ -14,7 +14,6 @@ const Filter = () => {
       transactionsCatArr.push(item.category)
     })
     const transcats = [...new Set(transactionsCatArr)]
-    console.log(transcats)
     transcats.unshift("All transactions")
     return transcats
   }
