@@ -2,8 +2,7 @@
 import DropdownFIlter from "./DropdownFIlter";
 // import "@/components/shared/Filter/Filter.module.css"
 import { TransactionsData } from "@/libs/Calculate";
-import { useEffect, useState } from "react";
-const Filter = () => {
+const Filter = ({sortValue, catValue}) => {
 
   const transactionsCatArr = []
   
@@ -41,18 +40,22 @@ const sortIcon = `M16.25 3L3.75 3C3.41848 3 3.10054 3.1317 2.86612 3.36612C2.631
                 {/* search filter */}
                 
                 {/* Sort by filter */}
-                  <DropdownFIlter 
+                  <DropdownFIlter
                   label="Sort by"
                   defaultText="Latest"
                   icon={sortIcon}
-                  dropdownOptions={["Latest", "Oldest", "A to Z", "Z to A", "Highest", "Lowest"]} />
+                  dropdownOptions={["Latest", "Oldest", "A to Z", "Z to A", "Highest", "Lowest"]} 
+                 handleChange={sortValue}
+                  />
                 {/* Sort by filter */}
                 {/* Sort by filter */}
                   <DropdownFIlter 
                   label="Category"
                   icon={categoryIcon}
                   defaultText={getTransCats()[0]}
-                  dropdownOptions={getTransCats()} />
+                  dropdownOptions={getTransCats()} 
+                  handleChange={catValue}
+                  />
                 {/* Sort by filter */}
                   
               </div>

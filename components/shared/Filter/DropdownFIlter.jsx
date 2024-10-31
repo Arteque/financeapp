@@ -1,10 +1,10 @@
 
 'use client'
 
-import {useEffect, useState} from "react"
+import { useState} from "react"
 
 
-const DropdownFIlter = ({dropdownOptions, label, defaultText, icon}) => {
+const DropdownFIlter = ({dropdownOptions, label, defaultText, icon, handleChange, ...props}) => {
 
 
     const [ dropdown, setDropdown ] = useState(false)
@@ -25,9 +25,9 @@ const DropdownFIlter = ({dropdownOptions, label, defaultText, icon}) => {
         <>
         
         {/* Sort by filter */}
-        <div className={`filter__dropdown ${dropdown ? 'open' : ''}`}>
-                <div className="filter__dropdown items">
-                    <button className={`items__header ${dropdown ? 'open' : ''}`} onClick={handleDropdown}>
+        <div className={`filter__dropdown ${dropdown ? 'open' : ''}`}  >
+                <div className="filter__dropdown items" onClick={handleChange}>
+                    <button className={`items__header ${dropdown ? 'open' : ''}`} onClick={handleDropdown} datavalue={label}  {...props}>
                     <span className="text">
                         {label}
                     </span>

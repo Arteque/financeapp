@@ -9,25 +9,30 @@ import { useState, useEffect } from "react"
 import ContentboxAvtar from "@/components/shared/ContentboxAvtar"
 const page = () => {
 
-const [filter, setFilter] = useState({
-  sortby: "Latest",
-  category: "All transactions",
-  start:0,
-  end:10
-})
+  const [category, setCategory] = useState("All Transactions")
+  const [sortby, setSortby] = useState("Latest")
 
-const [getData, setGetData] = useState("");
-const [pagesLength, setPagesLength] = useState(0);
 
-const transactions = TransactionsData().data;
+const [filter, setFilter] = useState()
 
-useEffect(() => {
-  setPagesLength(transactions.lenfth / 10)
-  if (filter.sortby == "Latest" && filter.category == "All transactions") {
-    setGetData(transactions); // Set getData to the transactions data directly.
-    console.log(transactions); // Log transactions directly, if needed.
-  }
-}, [getData]);
+
+const handleCatValue = (e) => {
+  setCategory(e.target.innerText)
+}
+const handleSortValue = (e) => {
+  setSortby(e.target.innerText)
+}
+ 
+useEffect(()=> {
+  setFilter({
+    data: TransactionsData().data,
+    pages: Math.round(TransactionsData().data / 10),
+    cat: category,
+    sort: sortby
+  })
+  console.log(category)
+  console.log(sortby)
+},[])
 
 
   return (
@@ -39,16 +44,10 @@ useEffect(() => {
         <Section className="bg-light-400 rounded main-content__content">
             <Container className="padding">
                 <ContentBoxHeader>
-                    <Filter />
+                    <Filter sortValue={handleSortValue} catValue={handleCatValue}/>
                 </ContentBoxHeader>
                 <div className="page" datapage="1">
-                  {
-                    getData && getData.map((item, index) => (
-                      index < filter.end && (
-                          <ContentboxAvtar title={item.name} key={index}/>
-                      )
-                    ))
-                  }
+
                 </div>
                 <div className="pagination">
                   <button className="pagination__left">
@@ -56,9 +55,7 @@ useEffect(() => {
                     <span className="text">Prev</span>
                   </button>
                   <ul className="pagination__pages">
-                  {Array.from({ length: pagesLength }, (_, i) => (
-                    <li key={i} className="pagination__page">{i + 1}</li>
-                  ))}
+
                   </ul>
                   <button className="pagination__left">
                     <span className="text">Next</span>
