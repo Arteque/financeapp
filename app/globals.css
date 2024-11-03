@@ -816,6 +816,9 @@ a, .btn {
   gap: var(--gap__16);
   width: 100%;
 }
+.main-content__header.filter .filter__search-input input {
+  padding: var(--padding);
+}
 
 .filter__dropdown {
   position: relative;

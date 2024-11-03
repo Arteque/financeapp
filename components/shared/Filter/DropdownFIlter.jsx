@@ -19,14 +19,15 @@ const DropdownFIlter = ({dropdownOptions, label, defaultText, icon, handleChange
         e.preventDefault()
         setDropdownSelectedValue(e.target.innerText.trim())
         setDropdown( prev => !prev )
+        
     }
 
     return (
         <>
         
         {/* Sort by filter */}
-        <div className={`filter__dropdown ${dropdown ? 'open' : ''}`}  >
-                <div className="filter__dropdown items" onClick={handleChange}>
+        <div className={`filter__dropdown ${dropdown ? 'open' : ''}`}  onClick={handleChange}>
+                <div className="filter__dropdown items">
                     <button className={`items__header ${dropdown ? 'open' : ''}`} onClick={handleDropdown} datavalue={label}  {...props}>
                     <span className="text">
                         {label}
