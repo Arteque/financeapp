@@ -13,11 +13,9 @@ const page = () => {
   const [getContent, setGetContent] = useState(theData)
   const [dataCategory, setDataCategory] = useState("All transactions")
   const [sortby, setSortby] = useState("Latest")
-  const [inputText, setInputText] = useState("")
-  
+  const [pagesNumber, setPagesNumber] = useState()
   const handleCatValue = (e) => {
     setDataCategory(e.target.innerText)
-    
   }
   const handleSortValue = (e) => {
     setSortby(e.target.innerText)
@@ -28,7 +26,6 @@ const page = () => {
   const handleInputValue = (e) => {
     // console.log(e.target.value)
     // if(e.target.value.length < 2) return 
-    setInputText(e.target.value.toLowerCase().trim())
    const newData = [...TransactionsData().data].filter(item => {
      const searchedText = e.target.value.toLowerCase().trim()
      const itemName = item.name.toLowerCase().trim()
@@ -177,9 +174,20 @@ switch (sortby) {
 }
 
 
+getContent.length > 10 ? setPagesNumber(Math.round(getContent.length / 10)) : setPagesNumber(0)
+
+console.log(getContent.length)
+console.log(pagesNumber)
+
 },[dataCategory, sortby])
 
+const renderPages = (items) => {
+  if(items.length < 10) return
 
+  const numberOfPages = Math.round(items.length / 10)
+  
+  
+}
   return (
     <>
       <Container className="main-content__container"> 
@@ -198,7 +206,6 @@ switch (sortby) {
                       sortDefaultText={sortby}
                     />
                 </ContentBoxHeader>
-                <div className="page" datapage="1">
                 {
                       getContent ? getContent.map((item, index) =>(
                           <ContentboxAvtar  
@@ -214,7 +221,6 @@ switch (sortby) {
                         <li>loading...</li>
                        )
                   }
-                </div>
                 <div className="pagination">
                   <button className="pagination__left">
                     <span className="icon"></span>

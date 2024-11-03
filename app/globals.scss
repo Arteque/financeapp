@@ -525,13 +525,13 @@ a,.btn{
     justify-content: space-between;
     gap: var(--gap__16);
     width: 100%;
-    .filter__search-input{
-        input{
-            padding: var(--padding);
-        }
+    
+}
+.filter__search-input{
+    input{
+        padding: var(--padding);
     }
 }
-
 .filter__dropdown {
     position:relative;
     z-index: 0;
