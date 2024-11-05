@@ -174,10 +174,7 @@ switch (sortby) {
 }
 
 
-getContent.length > 10 ? setPagesNumber(Math.round(getContent.length / 10)) : setPagesNumber(0)
-
-console.log(getContent.length)
-console.log(pagesNumber)
+renderPages(getContent)
 
 },[dataCategory, sortby])
 
@@ -185,7 +182,10 @@ const renderPages = (items) => {
   if(items.length < 10) return
 
   const numberOfPages = Math.round(items.length / 10)
-  
+  const numberOfPagesArr = []
+  for(let i = 0; i < numberOfPages; i++){
+    numberOfPagesArr.push(i)
+  }
   
 }
   return (
@@ -206,34 +206,46 @@ const renderPages = (items) => {
                       sortDefaultText={sortby}
                     />
                 </ContentBoxHeader>
-                {
-                      getContent ? getContent.map((item, index) =>(
-                          <ContentboxAvtar  
-                              key={index} 
-                              category={item.category}
-                              date={item.date}
-                              number={Currency(item.amount)}
-                              title={item.name}
-                              src={item.avatar}
-                          />
-                        )) 
-                       : (
-                        <li>loading...</li>
-                       )
+                  {
+                    getContent ? getContent.map((item, i) =>(
+                      <ContentboxAvtar  
+                          key={i} 
+                          category={item.category}
+                          date={item.date}
+                          number={Currency(item.amount)}
+                          title={item.name}
+                          src={item.avatar}
+                      />
+                    )
+                  ):(
+                    <li>loading...</li>
+                    )
                   }
-                <div className="pagination">
-                  <button className="pagination__left">
-                    <span className="icon"></span>
-                    <span className="text">Prev</span>
-                  </button>
-                  <ul className="pagination__pages">
-                    
-                  </ul>
-                  <button className="pagination__left">
-                    <span className="text">Next</span>
-                    <span className="icon"></span>
-                  </button>
-                </div>
+                {
+                  pagesNumber && (
+                    <div className="pagination">
+                      <button className="pagination__left">
+                        <span className="icon"></span>
+                        <span className="text">Prev</span>
+                      </button>
+                      <ul className="pagination__pages">
+                        {
+                          pagesNumber.map((item, index) => (
+                            <li key={index}>
+                              <button>
+                                {index + 1}
+                              </button>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                      <button className="pagination__left">
+                        <span className="text">Next</span>
+                        <span className="icon"></span>
+                      </button>
+                    </div>
+                  )
+                }
             </Container>
         </Section>
       </Container>
