@@ -605,3 +605,46 @@ a,.btn{
         }
     }
 }
+
+.pagination{
+    display: flex;
+    justify-content:space-between;
+    .pagination__page-number{
+        display: flex;
+        gap: var(--gap__12);
+        li{
+            border-radius: var(--rounded);
+            border: 1px solid var(--dark-300);
+            button{
+                height: 40px;
+                width:40px;
+                display: block;
+            }
+            &.current{
+                border-color: transparent;
+                button{
+                 color:var(--light-300);
+                }
+            }
+        }
+    }
+    .pagination__btn{
+        display: flex;
+        gap:var(--gap__12);
+        border-radius: var(--rounded);
+        border: 1px solid var(--dark-300);
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        @include md{
+            width: 95px;
+        }
+        .text{
+            display:none;
+            @include md{
+                display: unset;
+            }
+        }
+    }
+}

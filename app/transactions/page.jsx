@@ -9,11 +9,17 @@ import { useState, useEffect } from "react"
 import ContentboxAvtar from "@/components/shared/ContentboxAvtar"
 import { Currency } from "@/libs/currency"
 const page = () => {
+
+
   const theData = TransactionsData().data
   const [getContent, setGetContent] = useState(theData)
   const [dataCategory, setDataCategory] = useState("All transactions")
   const [sortby, setSortby] = useState("Latest")
   const [pagesNumber, setPagesNumber] = useState()
+  const [multipage, setMultipage] = useState(false)
+  
+  
+  
   const handleCatValue = (e) => {
     setDataCategory(e.target.innerText)
   }
@@ -173,20 +179,30 @@ switch (sortby) {
     break;
 }
 
-
-renderPages(getContent)
+getContent.length >  10 ? setMultipage(true) : setMultipage(false)
 
 },[dataCategory, sortby])
 
-const renderPages = (items) => {
-  if(items.length < 10) return
 
-  const numberOfPages = Math.round(items.length / 10)
-  const numberOfPagesArr = []
-  for(let i = 0; i < numberOfPages; i++){
-    numberOfPagesArr.push(i)
-  }
-  
+useEffect(() => {
+  getContent.length > 10 && setGetContent(renderPages(getContent))
+
+}, [getContent])
+
+const renderPages = (items) => {
+  if(items.length < 10) return null
+    const itemsPerPage = 10
+    const numberOfPages = Math.round(items.length / 10)
+    const numberOfPagesArr = []
+    const pages = []
+    for(let i = 0; i < numberOfPages; i++){
+      numberOfPagesArr.push(i)
+    }
+    for(let i = 0; i < items.length; i += itemsPerPage){
+      pages.push(items.slice(i, i + itemsPerPage))
+    }
+    console.log(pages)
+    return pages
 }
   return (
     <>
@@ -206,46 +222,22 @@ const renderPages = (items) => {
                       sortDefaultText={sortby}
                     />
                 </ContentBoxHeader>
+                {pagesNumber}
                   {
-                    getContent ? getContent.map((item, i) =>(
-                      <ContentboxAvtar  
-                          key={i} 
-                          category={item.category}
-                          date={item.date}
-                          number={Currency(item.amount)}
-                          title={item.name}
-                          src={item.avatar}
-                      />
-                    )
-                  ):(
-                    <li>loading...</li>
+                    getContent && getContent.map((item, i) =>(
+                     
+                          <ContentboxAvtar  
+                            key={i} 
+                            category={item.category}
+                            date={item.date}
+                            number={Currency(item.amount)}
+                            title={item.name}
+                            src={item.avatar}
+                        />
+                      )
                     )
                   }
-                {
-                  pagesNumber && (
-                    <div className="pagination">
-                      <button className="pagination__left">
-                        <span className="icon"></span>
-                        <span className="text">Prev</span>
-                      </button>
-                      <ul className="pagination__pages">
-                        {
-                          pagesNumber.map((item, index) => (
-                            <li key={index}>
-                              <button>
-                                {index + 1}
-                              </button>
-                            </li>
-                          ))
-                        }
-                      </ul>
-                      <button className="pagination__left">
-                        <span className="text">Next</span>
-                        <span className="icon"></span>
-                      </button>
-                    </div>
-                  )
-                }
+                
             </Container>
         </Section>
       </Container>
