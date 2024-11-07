@@ -16,7 +16,7 @@ const page = () => {
   const [dataCategory, setDataCategory] = useState("All transactions")
   const [sortby, setSortby] = useState("Latest")
   const [pagesNumber, setPagesNumber] = useState()
-  const [multipage, setMultipage] = useState(false)
+  const [multipage, setMultipage] = useState(true)
   
   
   
@@ -30,8 +30,6 @@ const page = () => {
 
 
   const handleInputValue = (e) => {
-    // console.log(e.target.value)
-    // if(e.target.value.length < 2) return 
    const newData = [...TransactionsData().data].filter(item => {
      const searchedText = e.target.value.toLowerCase().trim()
      const itemName = item.name.toLowerCase().trim()
@@ -145,7 +143,11 @@ const lowestSort = () => {
     return sortedItems
   })
 }
+
+
+//Data Filter
 useEffect(() => {
+ 
   const filtredData = theData.filter(entry => {
     if(dataCategory == "All transactions") {
       return entry
@@ -155,6 +157,7 @@ useEffect(() => {
     }
   }
 )
+
 setGetContent(filtredData)
 switch (sortby) {
   case 'A to Z':
@@ -179,31 +182,31 @@ switch (sortby) {
     break;
 }
 
-getContent.length >  10 ? setMultipage(true) : setMultipage(false)
+
 
 },[dataCategory, sortby])
 
 
-useEffect(() => {
-  getContent.length > 10 && setGetContent(renderPages(getContent))
-
-}, [getContent])
 
 const renderPages = (items) => {
-  if(items.length < 10) return null
+  let pages = []
+  if(items.length < 10) {
+    pages.push(items)
+  }else{
     const itemsPerPage = 10
     const numberOfPages = Math.round(items.length / 10)
     const numberOfPagesArr = []
-    const pages = []
     for(let i = 0; i < numberOfPages; i++){
       numberOfPagesArr.push(i)
     }
     for(let i = 0; i < items.length; i += itemsPerPage){
       pages.push(items.slice(i, i + itemsPerPage))
     }
-    console.log(pages)
+  }
     return pages
 }
+
+//Components rendring
   return (
     <>
       <Container className="main-content__container"> 
@@ -222,20 +225,22 @@ const renderPages = (items) => {
                       sortDefaultText={sortby}
                     />
                 </ContentBoxHeader>
-                {pagesNumber}
                   {
-                    getContent && getContent.map((item, i) =>(
-                     
-                          <ContentboxAvtar  
-                            key={i} 
-                            category={item.category}
-                            date={item.date}
-                            number={Currency(item.amount)}
-                            title={item.name}
-                            src={item.avatar}
-                        />
+                   multipage ? (
+                      getContent && getContent.map((item, i) =>(      
+                            <ContentboxAvtar  
+                              key={i} 
+                              category={item.category}
+                              date={item.date}
+                              number={Currency(item.amount)}
+                              title={item.name}
+                              src={item.avatar}
+                          />
+                        )
                       )
-                    )
+                   ):(
+                      <>Test</>
+                   )
                   }
                 
             </Container>
