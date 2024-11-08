@@ -648,3 +648,15 @@ a,.btn{
         }
     }
 }
+
+.multipage-container{
+    display: flex;
+    gap: var(--gap__16);
+    overflow-x:scroll;
+    scroll-snap-type:x mandatory;
+    scroll-padding: var(--gap__16);
+    .multipage-container__page{
+        min-width: 100%;
+        scroll-snap-align: start;
+    }
+}

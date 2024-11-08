@@ -963,4 +963,19 @@ a, .btn {
   .pagination .pagination__btn .text {
     display: unset;
   }
+}
+
+.multipage-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--gap__16);
+  overflow-x: scroll;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+  scroll-padding: var(--gap__16);
+}
+.multipage-container .multipage-container__page {
+  min-width: 100%;
+  scroll-snap-align: start;
 }/*# sourceMappingURL=globals.css.map */
