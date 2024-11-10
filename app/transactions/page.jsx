@@ -8,6 +8,7 @@ import { TransactionsData } from "@/libs/Calculate";
 import { useState, useEffect } from "react";
 import ContentboxAvtar from "@/components/shared/ContentboxAvtar";
 import { Currency } from "@/libs/currency";
+import { useSearchParams } from "next/navigation";
 
 const Page = () => {
   const theData = TransactionsData().data;
@@ -15,6 +16,9 @@ const Page = () => {
   const [dataCategory, setDataCategory] = useState("All transactions");
   const [sortby, setSortby] = useState("Latest");
   const [multipage, setMultipage] = useState(false);
+  const searchParams = useSearchParams()
+
+
 
   const handleCatValue = (e) => setDataCategory(e.target.innerText);
   const handleSortValue = (e) => setSortby(e.target.innerText);
@@ -51,6 +55,7 @@ const Page = () => {
 
   // Data Filtering and Sorting
   useEffect(() => {
+    
     const filteredData = dataCategory === "All transactions"
       ? theData
       : theData.filter((entry) => entry.category === dataCategory);
@@ -61,27 +66,11 @@ const Page = () => {
     }
   }, [dataCategory, sortby]);
 
-  // Pagination Check
-  useEffect(() => {
-    const shouldPaginate = getContent.length > 10;
-    setMultipage(shouldPaginate);
-
-    if (shouldPaginate) {
-      setGetContent(renderPages(getContent));
-    }
-  }, [getContent]);
 
 
-  
-  const renderPages = (items) => {
-    const itemsPerPage = 10;
-    const pages = [];
 
-    for (let i = 0; i < items.length; i += itemsPerPage) {
-      pages.push(items.slice(i, i + itemsPerPage));
-    }
-    return pages;
-  };
+
+
 
   // Components rendering
   return (
@@ -100,40 +89,22 @@ const Page = () => {
                 sortDefaultText={sortby}
               />
             </ContentBoxHeader>
-            {multipage ? (
-              <div className="multipage-container">
-                {getContent.map((element, index) => (
-                  <div
-                    className={`multipage-container__page ${index === 0 ? "current" : ""}`}
-                    data-page={index}
-                    key={index}
-                  >
-                    {element.map((item, i) => (
-                      <ContentboxAvtar
-                        className={`multipage-container__page-${index}--item-${i}`}
-                        key={i}
-                        category={item.category}
-                        date={item.date}
-                        number={Currency(item.amount)}
-                        title={item.name}
-                        src={item.avatar}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              getContent.map((item, i) => (
-                <ContentboxAvtar
-                  key={i}
-                  category={item.category}
-                  date={item.date}
-                  number={Currency(item.amount)}
-                  title={item.name}
-                  src={item.avatar}
-                />
-              ))
-            )}
+            
+              {
+                getContent.map((item, i) => (
+                    <ContentboxAvtar
+                      key={i}
+                      category={item.category}
+                      date={item.date}
+                      number={Currency(item.amount)}
+                      title={item.name}
+                      src={item.avatar}
+                    />
+                  )
+                )
+              }
+             
+           
           </Container>
         </Section>
       </Container>
